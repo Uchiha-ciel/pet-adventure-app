@@ -1,0 +1,38 @@
+<view class="diary-page">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <view wx:if="{{isEmpty && !loading}}" class="empty-state">
+    <text class="empty-emoji">📖</text>
+    <text class="empty-text">还没有冒险日记~</text>
+    <text class="empty-sub">每月第一天会自动生成上个月的冒险日记</text>
+  </view>
+
+  <view class="diary-list" wx:if="{{!isEmpty}}">
+    <view class="diary-card card" wx:for="{{adventures}}" wx:key="month"
+      data-adventure="{{item}}" bindtap="onTapAdventure">
+      <view class="diary-header">
+        <text class="diary-month">{{item.month}}</text>
+        <text class="diary-arrow">查看 ›</text>
+      </view>
+      <view class="diary-stats">
+        <text>支出 ¥{{(item.totalExpense / 100).toFixed(2)}}</text>
+        <text>收入 ¥{{(item.totalIncome / 100).toFixed(2)}}</text>
+        <text>记录 {{item.recordDays || 0}} 天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Story Modal -->
+  <view class="story-overlay" wx:if="{{selectedStory}}" bindtap="onCloseStory">
+    <view class="story-modal" catchtap="">
+      <text class="story-title">{{selectedStory.title}}</text>
+      <view class="story-sections">
+        <view class="story-section" wx:for="{{selectedStory.sections}}" wx:key="type">
+          <text class="story-text">{{item.text}}</text>
+        </view>
+      </view>
+      <text class="story-summary">{{selectedStory.summary}}</text>
+      <button class="story-close" bindtap="onCloseStory">知道了</button>
+    </view>
+  </view>
+</view>
