@@ -1,0 +1,75 @@
+<view class="add-record-page">
+  <!-- Type Toggle -->
+  <view class="type-toggle">
+    <view class="type-btn {{type === 'expense' ? 'active expense' : ''}}"
+      data-type="expense" bindtap="switchType">支出</view>
+    <view class="type-btn {{type === 'income' ? 'active income' : ''}}"
+      data-type="income" bindtap="switchType">收入</view>
+  </view>
+
+  <!-- Amount Display -->
+  <view class="amount-area">
+    <text class="currency">¥</text>
+    <text class="amount-value {{!amount ? 'placeholder' : ''}}">{{amount || '0'}}</text>
+  </view>
+
+  <!-- Category Selection -->
+  <view class="field-row" bindtap="onToggleCategoryPicker">
+    <text class="field-label">分类</text>
+    <view class="field-value-row">
+      <text class="field-value {{categoryL2 ? '' : 'placeholder'}}">
+        {{categoryL2 ? getCategoryName() : '选择分类'}}
+      </text>
+      <text class="field-arrow">›</text>
+    </view>
+  </view>
+
+  <category-picker
+    wx:if="{{showCategoryPicker}}"
+    type="{{type}}"
+    bind:select="onSelectCategory"
+  />
+
+  <!-- Date & Time -->
+  <view class="field-row">
+    <picker mode="date" value="{{date}}" bindchange="onDateChange">
+      <view class="field-value-row">
+        <text class="field-label">日期</text>
+        <view class="field-right"><text>{{date}}</text><text class="field-arrow">›</text></view>
+      </view>
+    </picker>
+  </view>
+  <view class="field-row">
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="field-value-row">
+        <text class="field-label">时间</text>
+        <view class="field-right"><text>{{time}}</text><text class="field-arrow">›</text></view>
+      </view>
+    </picker>
+  </view>
+
+  <!-- Note -->
+  <view class="field-row">
+    <text class="field-label">备注</text>
+    <input class="note-input" placeholder="添加备注（选填）" value="{{note}}"
+      bindinput="onNoteInput" maxlength="50" />
+  </view>
+
+  <!-- Submit Button -->
+  <view class="submit-area">
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}"
+      loading="{{submitting}}">记一笔 ✨</button>
+  </view>
+
+  <!-- Number Pad -->
+  <view class="number-pad">
+    <view class="pad-row" wx:for="{{[['1','2','3'],['4','5','6'],['7','8','9'],['.','0','del']]}}" wx:key="*this">
+      <view class="pad-key {{cell === 'del' ? 'del-key' : ''}}"
+        wx:for="{{item}}" wx:key="*this" wx:for-item="cell"
+        data-digit="{{cell}}" bindtap="onTapDigit">
+        <text wx:if="{{cell === 'del'}}">⌫</text>
+        <text wx:else>{{cell}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+.add-record-page { min-height: 100vh; padding-bottom: 40rpx; }
+
+.type-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 24rpx;
+  padding: 24rpx;
+}
+
+.type-btn {
+  padding: 16rpx 56rpx;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  background: var(--card);
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.type-btn.active.expense { background: var(--expense); color: #fff; }
+.type-btn.active.income { background: var(--income); color: #fff; }
+
+.amount-area {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.currency { font-size: 48rpx; color: var(--text); font-weight: bold; }
+
+.amount-value {
+  font-size: 72rpx;
+  font-weight: bold;
+  color: var(--text);
+  margin-left: 8rpx;
+  min-width: 100rpx;
+}
+
+.amount-value.placeholder { color: var(--text-secondary); font-size: 48rpx; }
+
+.field-row {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  margin: 8rpx 24rpx;
+  background: var(--card);
+  border-radius: 16rpx;
+}
+
+.field-label { font-size: 28rpx; color: var(--text); width: 100rpx; }
+
+.field-value-row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.field-value { font-size: 28rpx; color: var(--text); }
+.field-value.placeholder { color: var(--text-secondary); }
+.field-arrow { font-size: 36rpx; color: var(--text-secondary); }
+.field-right { display: flex; align-items: center; gap: 8rpx; flex: 1; justify-content: flex-end; }
+
+.note-input { flex: 1; font-size: 28rpx; }
+
+.submit-area { padding: 32rpx 24rpx; }
+
+.submit-btn {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 48rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 20rpx 0;
+  border: none;
+}
+
+.number-pad {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  padding: 12rpx 0 env(safe-area-inset-bottom);
+  border-top: 1rpx solid #F0F0F0;
+}
+
+.pad-row { display: flex; }
+
+.pad-key {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 40rpx;
+  color: var(--text);
+  transition: background 0.1s;
+}
+
+.pad-key:active { background: #F5F5F5; }
+.pad-key.del-key { font-size: 36rpx; color: var(--text-secondary); }
