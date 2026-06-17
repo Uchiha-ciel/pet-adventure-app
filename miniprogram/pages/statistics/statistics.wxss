@@ -1,0 +1,98 @@
+.statistics-page { min-height: 100vh; padding-bottom: 40rpx; }
+
+.period-tabs {
+  display: flex;
+  background: var(--card);
+  margin: 16rpx 24rpx;
+  border-radius: 24rpx;
+  padding: 6rpx;
+}
+
+.period-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  border-radius: 20rpx;
+  transition: all 0.2s;
+}
+
+.period-tab.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: bold;
+}
+
+.overview-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 32rpx 16rpx;
+}
+
+.overview-item { text-align: center; flex: 1; }
+.overview-divider { width: 1rpx; height: 60rpx; background: #F0F0F0; }
+
+.ov-label { font-size: 24rpx; color: var(--text-secondary); display: block; }
+.ov-value { font-size: 34rpx; font-weight: bold; display: block; margin-top: 8rpx; }
+
+.center-card { display: flex; justify-content: center; }
+
+.category-list { margin-top: 8rpx; }
+
+.category-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.cat-rank {
+  width: 48rpx;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.cat-bar-container {
+  flex: 1;
+  height: 44rpx;
+  background: #F5F5F5;
+  border-radius: 22rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-bar-fill {
+  height: 100%;
+  border-radius: 22rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.2;
+  min-width: 4rpx;
+}
+
+.cat-bar-label {
+  position: absolute;
+  left: 16rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24rpx;
+  color: var(--text);
+  z-index: 1;
+}
+
+.cat-right { text-align: right; width: 140rpx; }
+.cat-amount { font-size: 26rpx; color: var(--text); font-weight: bold; display: block; }
+.cat-pct { font-size: 22rpx; color: var(--text-secondary); }
+
+.adventure-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adventure-text { font-size: 28rpx; color: var(--text); }
+
+.loading { text-align: center; padding: 80rpx; color: var(--text-secondary); }

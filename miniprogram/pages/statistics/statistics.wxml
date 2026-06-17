@@ -1,0 +1,69 @@
+<view class="statistics-page">
+  <!-- Period Tabs -->
+  <view class="period-tabs">
+    <view
+      class="period-tab {{period === item.key ? 'active' : ''}}"
+      wx:for="{{periods}}" wx:key="key"
+      data-key="{{item.key}}" bindtap="onPeriodChange"
+    >{{item.label}}</view>
+  </view>
+
+  <view wx:if="{{!stats && loading}}" class="loading">加载中...</view>
+
+  <view wx:if="{{stats}}" class="stats-content">
+    <!-- Overview Card -->
+    <view class="card overview-card">
+      <view class="overview-item expense">
+        <text class="ov-label">支出</text>
+        <text class="ov-value">¥{{formatAmount(stats.totalExpense)}}</text>
+      </view>
+      <view class="overview-divider"></view>
+      <view class="overview-item income">
+        <text class="ov-label">收入</text>
+        <text class="ov-value">¥{{formatAmount(stats.totalIncome)}}</text>
+      </view>
+      <view class="overview-divider"></view>
+      <view class="overview-item balance">
+        <text class="ov-label">结余</text>
+        <text class="ov-value {{stats.balance >= 0 ? 'income' : 'expense'}}">
+          ¥{{formatAmount(stats.balance >= 0 ? stats.balance : -stats.balance)}}
+        </text>
+      </view>
+    </view>
+
+    <!-- Budget Ring -->
+    <view class="card center-card" wx:if="{{budget && period === 'month'}}">
+      <budget-ring spent="{{stats.totalExpense}}" budget="{{budget.totalBudget}}" size="{{180}}" label="月度预算" />
+    </view>
+
+    <!-- Category Breakdown -->
+    <view class="card" wx:if="{{categoryBreakdown.length > 0}}">
+      <text class="section-title">支出分类排行</text>
+      <view class="category-list">
+        <view class="category-row" wx:for="{{categoryBreakdown}}" wx:key="category" wx:for-index="idx">
+          <view class="cat-rank">#{{idx + 1}}</view>
+          <view class="cat-bar-container">
+            <view class="cat-bar-fill" style="width: {{item.percentage}}%; background: {{getCategoryColor(idx)}};"></view>
+            <text class="cat-bar-label">{{item.category}}</text>
+          </view>
+          <view class="cat-right">
+            <text class="cat-amount">¥{{formatAmount(item.amount)}}</text>
+            <text class="cat-pct">{{item.percentage}}%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Empty -->
+    <view wx:if="{{categoryBreakdown.length === 0}}" class="empty-state">
+      <text class="empty-emoji">📊</text>
+      <text class="empty-text">还没有数据哦~\n记一笔就能看到统计啦！</text>
+    </view>
+
+    <!-- Adventure Diary Entry -->
+    <view class="card adventure-entry" bindtap="onTapAdventureDiary" wx:if="{{period === 'month'}}">
+      <text class="adventure-text">📖 查看本月冒险日记</text>
+      <text class="arrow">→</text>
+    </view>
+  </view>
+</view>
