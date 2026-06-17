@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "monthlyTrigger",
+      "type": "timer",
+      "config": "0 0 9 1 * * *"
+    }
+  ]
+}
