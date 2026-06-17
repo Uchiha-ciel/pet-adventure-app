@@ -1,0 +1,26 @@
+<view class="collection-page">
+  <view class="tab-row">
+    <view class="col-tab {{activeTab === 'pets' ? 'active' : ''}}" data-tab="pets" bindtap="onTabChange">精灵</view>
+    <view class="col-tab {{activeTab === 'skins' ? 'active' : ''}}" data-tab="skins" bindtap="onTabChange">配色</view>
+    <view class="col-tab {{activeTab === 'accessories' ? 'active' : ''}}" data-tab="accessories" bindtap="onTabChange">配饰</view>
+  </view>
+
+  <view class="pet-grid" wx:if="{{activeTab === 'pets'}}">
+    <view class="pet-card {{item.unlocked ? '' : 'locked'}} {{currentPetId === item.id ? 'current' : ''}}"
+      wx:for="{{pets}}" wx:key="id" data-id="{{item.id}}" bindtap="onSelectPet">
+      <view class="pet-card-icon">
+        <text class="pet-emoji">{{item.unlocked ? '🐱' : '❓'}}</text>
+      </view>
+      <text class="pet-card-name">{{item.unlocked ? item.name : '???'}}</text>
+      <text class="pet-card-badge" wx:if="{{currentPetId === item.id}}">使用中</text>
+      <text class="pet-card-lock" wx:elif="{{!item.unlocked}}">🔒</text>
+    </view>
+  </view>
+
+  <view wx:if="{{activeTab === 'skins'}}" class="empty-state">
+    <text class="empty-text">更多配色即将上线~</text>
+  </view>
+  <view wx:if="{{activeTab === 'accessories'}}" class="empty-state">
+    <text class="empty-text">更多配饰即将上线~</text>
+  </view>
+</view>

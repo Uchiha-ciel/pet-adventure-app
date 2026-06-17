@@ -1,0 +1,32 @@
+.collection-page { min-height: 100vh; padding-bottom: 40rpx; }
+
+.tab-row { display: flex; padding: 16rpx 24rpx; gap: 16rpx; }
+.col-tab {
+  padding: 12rpx 32rpx; border-radius: 32rpx; font-size: 26rpx;
+  background: #F5F5F5; color: var(--text-secondary);
+}
+.col-tab.active { background: var(--primary); color: #fff; }
+
+.pet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16rpx; padding: 16rpx 24rpx; }
+
+.pet-card {
+  text-align: center; padding: 24rpx 12rpx; border-radius: 16rpx;
+  background: var(--card); position: relative;
+}
+.pet-card.locked { opacity: 0.5; }
+.pet-card.current { border: 3rpx solid var(--primary); }
+
+.pet-card-icon {
+  width: 100rpx; height: 100rpx; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #FFB6C1);
+  margin: 0 auto 12rpx; display: flex; align-items: center; justify-content: center;
+}
+.pet-card.locked .pet-card-icon { background: #E0E0E0; }
+.pet-emoji { font-size: 44rpx; }
+
+.pet-card-name { font-size: 24rpx; color: var(--text); display: block; }
+.pet-card-badge {
+  font-size: 18rpx; color: var(--primary); background: #FF6B8A20;
+  padding: 2rpx 12rpx; border-radius: 16rpx; margin-top: 6rpx; display: inline-block;
+}
+.pet-card-lock { font-size: 20rpx; display: block; margin-top: 4rpx; }
