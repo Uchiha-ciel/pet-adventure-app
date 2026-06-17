@@ -1,0 +1,6 @@
+<view class="budget-ring-container" style="width: {{size}}rpx; height: {{size}}rpx;">
+  <view class="ring-center">
+    <text class="ring-percentage">{{percentage}}%</text>
+    <text class="ring-label" wx:if="{{label}}">{{label}}</text>
+  </view>
+</view>
