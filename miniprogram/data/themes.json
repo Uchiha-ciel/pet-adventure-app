@@ -1,0 +1,36 @@
+{
+  "permanent": [
+    { "id": "candy-kingdom", "name": "糖果王国", "colors": { "primary": "#FF6B8A", "secondary": "#FFB6C1", "bg": "#FFF0F5" }, "unlockCondition": "initial" },
+    { "id": "misty-forest", "name": "迷雾森林", "colors": { "primary": "#7BC67E", "secondary": "#A8D8A8", "bg": "#F0F8F0" }, "unlockCondition": "initial" },
+    { "id": "ocean-adventure", "name": "海底奇遇", "colors": { "primary": "#4ECDC4", "secondary": "#87CEEB", "bg": "#F0F8FF" }, "unlockCondition": "initial" },
+    { "id": "star-travel", "name": "星空漫游", "colors": { "primary": "#6C5CE7", "secondary": "#A29BFE", "bg": "#1A1A2E", "text": "#FFFFFF" }, "unlockCondition": "initial" },
+    { "id": "sakura-garden", "name": "樱花庭院", "colors": { "primary": "#FFB7C5", "secondary": "#FFE4E9", "bg": "#FFF5F7" }, "unlockCondition": { "type": "totalRecords", "value": 30 } },
+    { "id": "desert-oasis", "name": "沙漠绿洲", "colors": { "primary": "#FFB347", "secondary": "#FFD700", "bg": "#FFF8E7" }, "unlockCondition": { "type": "totalRecords", "value": 50 } },
+    { "id": "ice-wonderland", "name": "冰雪仙境", "colors": { "primary": "#87CEEB", "secondary": "#E0F7FA", "bg": "#F0FAFF" }, "unlockCondition": { "type": "totalRecords", "value": 100 } },
+    { "id": "cloud-castle", "name": "云上城堡", "colors": { "primary": "#DDA0DD", "secondary": "#E8D5F5", "bg": "#FEF5FF" }, "unlockCondition": { "type": "totalRecords", "value": 150 } },
+    { "id": "tropical-island", "name": "热带海岛", "colors": { "primary": "#00CED1", "secondary": "#98FB98", "bg": "#F0FFF0" }, "unlockCondition": { "type": "totalRecords", "value": 200 } },
+    { "id": "mushroom-village", "name": "蘑菇村庄", "colors": { "primary": "#CD853F", "secondary": "#DEB887", "bg": "#FFF5EE" }, "unlockCondition": { "type": "totalRecords", "value": 300 } },
+    { "id": "magic-academy", "name": "魔法学院", "colors": { "primary": "#9370DB", "secondary": "#DDA0DD", "bg": "#1A0033", "text": "#FFFFFF" }, "unlockCondition": { "type": "totalRecords", "value": 400 } },
+    { "id": "steam-city", "name": "蒸汽城市", "colors": { "primary": "#B8860B", "secondary": "#DAA520", "bg": "#FFF8DC" }, "unlockCondition": { "type": "totalRecords", "value": 500 } },
+    { "id": "bamboo-path", "name": "竹林小径", "colors": { "primary": "#556B2F", "secondary": "#8FBC8F", "bg": "#F5FFF5" }, "unlockCondition": { "type": "totalRecords", "value": 600 } },
+    { "id": "sunflower-field", "name": "向日葵田", "colors": { "primary": "#FFD700", "secondary": "#FFFACD", "bg": "#FFFFF0" }, "unlockCondition": { "type": "totalRecords", "value": 700 } },
+    { "id": "aurora-icefield", "name": "极光冰原", "colors": { "primary": "#00CED1", "secondary": "#7FFFD4", "bg": "#F0FFFF" }, "unlockCondition": { "type": "totalRecords", "value": 800 } },
+    { "id": "totoro-forest", "name": "龙猫森林", "colors": { "primary": "#3CB371", "secondary": "#90EE90", "bg": "#F0FFF0" }, "unlockCondition": { "type": "totalRecords", "value": 900 } },
+    { "id": "gem-cave", "name": "宝石矿洞", "colors": { "primary": "#FF1493", "secondary": "#FFB6C1", "bg": "#FFF0F5" }, "unlockCondition": { "type": "totalRecords", "value": 1000 } },
+    { "id": "sky-garden", "name": "空中花园", "colors": { "primary": "#87CEEB", "secondary": "#FFFACD", "bg": "#F8F8FF" }, "unlockCondition": { "type": "consecutiveDays", "value": 30 } },
+    { "id": "moonlit-market", "name": "月光夜市", "colors": { "primary": "#FF6347", "secondary": "#FFA07A", "bg": "#2C1810", "text": "#FFFFFF" }, "unlockCondition": { "type": "consecutiveDays", "value": 60 } },
+    { "id": "dream-onsen", "name": "梦幻温泉", "colors": { "primary": "#FFB6C1", "secondary": "#FFE4E1", "bg": "#FFFAFA" }, "unlockCondition": { "type": "consecutiveDays", "value": 100 } }
+  ],
+  "festival": [
+    { "id": "spring-festival", "name": "新春庙会", "festival": "spring", "colors": { "primary": "#FF0000", "secondary": "#FFD700", "bg": "#FFF0F0" } },
+    { "id": "lantern-festival", "name": "元宵灯会", "festival": "lantern", "colors": { "primary": "#FF6347", "secondary": "#FFD700", "bg": "#FFF5F0" } },
+    { "id": "sakura-festival", "name": "樱花祭", "festival": "sakura", "month": 4, "colors": { "primary": "#FFB7C5", "secondary": "#FFC0CB", "bg": "#FFF5F7" } },
+    { "id": "dragon-boat", "name": "端午龙舟", "festival": "dragon-boat", "colors": { "primary": "#228B22", "secondary": "#90EE90", "bg": "#F5FFF5" } },
+    { "id": "qixi", "name": "七夕鹊桥", "festival": "qixi", "colors": { "primary": "#9370DB", "secondary": "#DDA0DD", "bg": "#FFF5FF" } },
+    { "id": "mid-autumn", "name": "中秋月宫", "festival": "mid-autumn", "colors": { "primary": "#FFD700", "secondary": "#FFA500", "bg": "#FFF8E7" } },
+    { "id": "halloween", "name": "万圣南瓜镇", "festival": "halloween", "colors": { "primary": "#FF6347", "secondary": "#9370DB", "bg": "#FFF5F0" } },
+    { "id": "christmas", "name": "圣诞雪乡", "festival": "christmas", "colors": { "primary": "#DC143C", "secondary": "#228B22", "bg": "#F0FFF0" } },
+    { "id": "new-year", "name": "新年倒计时", "festival": "new-year", "colors": { "primary": "#FFD700", "secondary": "#FF69B4", "bg": "#FFF8F0" } },
+    { "id": "birthday", "name": "生日派对", "festival": "birthday", "colors": { "primary": "#FF69B4", "secondary": "#FFB6C1", "bg": "#FFF5F7" } }
+  ]
+}
