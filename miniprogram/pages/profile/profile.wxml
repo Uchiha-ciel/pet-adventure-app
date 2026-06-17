@@ -1,0 +1,34 @@
+<view class="profile-page">
+  <view class="card profile-header">
+    <view class="avatar-circle">
+      <text class="avatar-emoji">🏝️</text>
+    </view>
+    <view class="profile-info">
+      <text class="profile-name">我的小精灵</text>
+      <text class="profile-stats">已记账 {{totalDays}} 天 · 共 {{totalRecords}} 笔</text>
+    </view>
+  </view>
+
+  <view class="card menu-list">
+    <view class="menu-item" wx:for="{{menuItems}}" wx:key="icon"
+      data-url="{{item.url}}" bindtap="onTapMenu">
+      <text class="menu-icon">{{item.icon}}</text>
+      <text class="menu-label">{{item.label}}</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">成就徽章</text>
+    <view class="achievement-grid">
+      <view class="achievement-item {{item.unlocked ? 'unlocked' : 'locked'}}"
+        wx:for="{{achievements}}" wx:key="id">
+        <text class="badge-emoji">{{item.unlocked ? '🌟' : '🔒'}}</text>
+        <text class="achieve-name">{{item.name}}</text>
+        <text class="achieve-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-text">钱罐小精灵 v1.0.0</view>
+</view>
