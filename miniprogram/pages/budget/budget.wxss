@@ -1,0 +1,25 @@
+.budget-page { min-height: 100vh; padding-bottom: 40rpx; }
+
+.period-row { display: flex; gap: 16rpx; margin-top: 16rpx; }
+.period-option {
+  flex: 1; text-align: center; padding: 20rpx;
+  border-radius: 16rpx; background: #F5F5F5; font-size: 28rpx; color: var(--text-secondary);
+}
+.period-option.active { background: var(--primary); color: #fff; }
+
+.input-row { display: flex; align-items: center; gap: 8rpx; margin-top: 16rpx; }
+.input-row.small { margin-top: 0; }
+.input-prefix { font-size: 32rpx; color: var(--text); font-weight: bold; }
+.budget-input { flex: 1; font-size: 32rpx; padding: 16rpx; border-bottom: 2rpx solid #F0F0F0; }
+
+.cat-budget-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20rpx 0; border-bottom: 1rpx solid #F5F5F5;
+}
+.cb-label { font-size: 28rpx; color: var(--text); }
+
+.save-area { padding: 40rpx 24rpx; }
+.save-btn {
+  width: 100%; background: var(--primary); color: #fff;
+  border-radius: 48rpx; font-size: 34rpx; font-weight: bold; padding: 20rpx 0; border: none;
+}
