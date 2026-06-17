@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/island/island",
+    "pages/statistics/statistics",
+    "pages/records/records",
+    "pages/profile/profile",
+    "pages/add-record/add-record",
+    "pages/budget/budget",
+    "pages/adventure-diary/adventure-diary",
+    "pages/collection/collection",
+    "pages/category-mgmt/category-mgmt"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF6B8A",
+    "navigationBarTitleText": "钱罐小精灵",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF8F0"
+  },
+  "tabBar": {
+    "color": "#A0A0A0",
+    "selectedColor": "#FF6B8A",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/island/island",
+        "text": "小岛",
+        "iconPath": "assets/icons/island.png",
+        "selectedIconPath": "assets/icons/island-active.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "assets/icons/stats.png",
+        "selectedIconPath": "assets/icons/stats-active.png"
+      },
+      {
+        "pagePath": "pages/records/records",
+        "text": "记录",
+        "iconPath": "assets/icons/records.png",
+        "selectedIconPath": "assets/icons/records-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile-active.png"
+      }
+    ]
+  },
+  "cloud": true
+}

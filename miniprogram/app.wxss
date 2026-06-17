@@ -1,0 +1,52 @@
+page {
+  --primary: #FF6B8A;
+  --income: #4ECDC4;
+  --expense: #FF8C5A;
+  --bg: #FFF8F0;
+  --card: #FFFFFF;
+  --accent: #FFE66D;
+  --danger: #FF4757;
+  --text: #3D3D3D;
+  --text-secondary: #A0A0A0;
+
+  background-color: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  font-size: 28rpx;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin: 16rpx 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 138, 0.1);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 48rpx;
+  border: none;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 16rpx;
+}
+
+.income { color: var(--income); }
+.expense { color: var(--expense); }
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 40rpx;
+  color: var(--text-secondary);
+}
