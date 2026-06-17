@@ -1,0 +1,66 @@
+<view class="records-page">
+  <!-- Month Navigator -->
+  <view class="month-nav">
+    <view class="month-arrow" bindtap="onPrevMonth">‹</view>
+    <picker mode="date" fields="month" value="{{currentMonth}}" bindchange="onMonthChange">
+      <view class="month-title">{{currentMonth}}</view>
+    </picker>
+    <view class="month-arrow" bindtap="onNextMonth">›</view>
+  </view>
+
+  <!-- Summary Bar -->
+  <view class="summary-bar" wx:if="{{!isEmpty}}">
+    <view class="summary-item expense">
+      <text class="s-label">支出</text>
+      <text class="s-value">¥{{formatAmount(groupedBills.reduce(function(s,g){return s+g.expense},0))}}</text>
+    </view>
+    <view class="summary-item income">
+      <text class="s-label">收入</text>
+      <text class="s-value">¥{{formatAmount(groupedBills.reduce(function(s,g){return s+g.income},0))}}</text>
+    </view>
+  </view>
+
+  <!-- Empty State -->
+  <view wx:if="{{isEmpty && !loading}}" class="empty-state">
+    <text class="empty-emoji">📝</text>
+    <text class="empty-text">还没有记录哦~\n点击下方 + 开始记账吧！</text>
+  </view>
+
+  <!-- Loading -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <text>加载中...</text>
+  </view>
+
+  <!-- Bill List -->
+  <view class="bill-groups" wx:if="{{!isEmpty}}">
+    <view class="bill-group" wx:for="{{groupedBills}}" wx:key="date">
+      <view class="group-header">
+        <text class="group-date">{{item.label}}</text>
+        <view class="group-summary">
+          <text wx:if="{{item.expense > 0}}" class="expense">支出 ¥{{formatAmount(item.expense)}}</text>
+          <text wx:if="{{item.income > 0}}" class="income">收入 ¥{{formatAmount(item.income)}}</text>
+        </view>
+      </view>
+
+      <view class="bill-item" wx:for="{{item.items}}" wx:key="_id">
+        <view class="bill-left">
+          <view class="bill-icon" style="background: {{item.color || '#FF8C5A'}}20;">
+            <text>{{item.categoryL1 === 'food' ? '🍔' : item.categoryL1 === 'transport' ? '🚗' : item.categoryL1 === 'shopping' ? '🛒' : item.categoryL1 === 'housing' ? '🏠' : item.categoryL1 === 'entertainment' ? '🎮' : item.categoryL1 === 'medical' ? '💊' : item.categoryL1 === 'education' ? '📚' : item.categoryL1 === 'social' ? '🎁' : item.categoryL1 === 'pet' ? '🐱' : item.categoryL1 === 'salary' ? '💼' : item.categoryL1 === 'investment' ? '📈' : item.categoryL1 === 'side-job' ? '💻' : item.categoryL1 === 'refund' ? '↩️' : item.categoryL1 === 'gift-money' ? '🎁' : '📦'}}</text>
+          </view>
+          <view class="bill-info">
+            <text class="bill-cat">{{item.categoryL2}}</text>
+            <text class="bill-note" wx:if="{{item.note}}">{{item.note}}</text>
+          </view>
+        </view>
+        <view class="bill-right">
+          <text class="bill-amount {{item.type === 'income' ? 'income' : 'expense'}}">
+            {{item.type === 'income' ? '+' : '-'}}¥{{formatAmount(item.amount)}}
+          </text>
+          <view class="bill-delete" catchtap="onDeleteBill" data-id="{{item._id}}">
+            <text>🗑</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
