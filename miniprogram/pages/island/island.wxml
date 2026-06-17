@@ -1,0 +1,76 @@
+<view class="island-page">
+  <!-- Pet Scene -->
+  <view class="scene-card card">
+    <view class="pet-area" bindtap="onPetTap">
+      <view class="pet-circle">
+        <text class="pet-sprite-text">{{pet.name.slice(0,1)}}</text>
+      </view>
+      <view class="pet-mood-bubble">
+        <text class="mood-emoji">{{moodEmoji}}</text>
+      </view>
+    </view>
+    <view class="pet-status">
+      <text class="pet-name">{{pet.name}}</text>
+      <view class="pet-level">
+        <text class="stage-badge stage-{{petStage}}">
+          {{petStage === 'baby' ? '宝宝' : petStage === 'young' ? '幼年' : '成年'}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Today Overview -->
+  <view class="card today-card">
+    <text class="section-title">今日概览</text>
+    <view class="today-row">
+      <view class="today-item expense">
+        <text class="t-label">支出</text>
+        <text class="t-value">¥{{formatAmount(todayStats.totalExpense)}}</text>
+      </view>
+      <view class="today-item income">
+        <text class="t-label">收入</text>
+        <text class="t-value">¥{{formatAmount(todayStats.totalIncome)}}</text>
+      </view>
+      <view class="today-item" wx:if="{{budget}}">
+        <text class="t-label">预算</text>
+        <text class="t-value {{budgetPercentage > 100 ? 'expense' : ''}}">{{budgetPercentage}}%</text>
+      </view>
+    </view>
+    <view class="budget-row" wx:if="{{budget}}">
+      <budget-ring spent="{{todayStats.totalExpense}}" budget="{{budget.totalBudget}}" size="{{120}}" label="预算" />
+    </view>
+  </view>
+
+  <!-- Adventure Progress -->
+  <view class="card">
+    <text class="section-title">本月冒险进度</text>
+    <view class="progress-outer">
+      <view class="progress-inner" style="width: {{adventureProgress}}%;"></view>
+    </view>
+    <text class="progress-label">{{adventureProgress}}% · 小精灵正在探索中~</text>
+  </view>
+
+  <!-- Recent Bills -->
+  <view class="card" wx:if="{{recentBills.length > 0}}">
+    <text class="section-title">今日冒险碎片</text>
+    <view class="recent-list">
+      <view class="recent-item" wx:for="{{recentBills}}" wx:key="_id">
+        <text class="recent-cat">{{item.categoryL2}}</text>
+        <text class="recent-amount {{item.type === 'income' ? 'income' : 'expense'}}">
+          {{item.type === 'income' ? '+' : '-'}}¥{{formatAmount(item.amount)}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Empty Today -->
+  <view class="card center" wx:if="{{recentBills.length === 0 && !loading}}">
+    <text class="empty-hint">今天还没有冒险记录哦~</text>
+    <text class="empty-sub">点击下方 + 开始记账吧！</text>
+  </view>
+
+  <!-- FAB -->
+  <view class="fab" bindtap="onAddRecord">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

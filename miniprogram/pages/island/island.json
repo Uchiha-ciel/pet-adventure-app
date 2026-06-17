@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "钱罐小精灵",
+  "usingComponents": {
+    "budget-ring": "/components/budget-ring/budget-ring"
+  }
+}
