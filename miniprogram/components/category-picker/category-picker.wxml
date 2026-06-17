@@ -1,0 +1,32 @@
+<view class="category-picker">
+  <view class="category-grid">
+    <view
+      class="category-item {{expandedIndex === index ? 'active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      data-index="{{index}}"
+      bindtap="onTapCategory"
+    >
+      <view class="cat-icon" style="background: {{item.color}}20;">
+        <text class="cat-emoji">{{item.name.slice(0,1)}}</text>
+      </view>
+      <text class="cat-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="subcategory-panel {{expandedIndex >= 0 ? 'show' : ''}}" wx:if="{{expandedIndex >= 0}}">
+    <text class="sub-title">{{categories[expandedIndex].name}} 细分</text>
+    <view class="sub-grid">
+      <view
+        class="sub-item"
+        wx:for="{{categories[expandedIndex].children}}"
+        wx:key="id"
+        data-l1="{{categories[expandedIndex].id}}"
+        data-l2="{{item.id}}"
+        bindtap="onSelectSub"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
