@@ -1,7 +1,7 @@
 <view class="profile-page">
   <view class="card profile-header">
     <view class="avatar-circle">
-      <text class="avatar-emoji">🏝️</text>
+      <image class="avatar-img" src="/assets/sprites/current-pet.png" mode="aspectFit" />
     </view>
     <view class="profile-info">
       <text class="profile-name">我的小精灵</text>

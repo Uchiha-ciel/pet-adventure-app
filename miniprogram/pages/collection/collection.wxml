@@ -9,11 +9,12 @@
     <view class="pet-card {{item.unlocked ? '' : 'locked'}} {{currentPetId === item.id ? 'current' : ''}}"
       wx:for="{{pets}}" wx:key="id" data-id="{{item.id}}" bindtap="onSelectPet">
       <view class="pet-card-icon">
-        <text class="pet-emoji">{{item.unlocked ? '🐱' : '❓'}}</text>
+        <image class="pet-card-img" src="/assets/sprites/{{item.id}}-baby.png" mode="aspectFit" wx:if="{{item.unlocked}}" />
+        <text class="pet-emoji" wx:else>?</text>
       </view>
       <text class="pet-card-name">{{item.unlocked ? item.name : '???'}}</text>
       <text class="pet-card-badge" wx:if="{{currentPetId === item.id}}">使用中</text>
-      <text class="pet-card-lock" wx:elif="{{!item.unlocked}}">🔒</text>
+      <text class="pet-card-lock" wx:elif="{{!item.unlocked}}">锁</text>
     </view>
   </view>
 

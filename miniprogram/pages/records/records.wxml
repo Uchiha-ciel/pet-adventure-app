@@ -22,7 +22,7 @@
 
   <!-- Empty State -->
   <view wx:if="{{isEmpty && !loading}}" class="empty-state">
-    <text class="empty-emoji">📝</text>
+    <image class="empty-img" src="/assets/sprites/pet-idle.png" mode="aspectFit" />
     <text class="empty-text">还没有记录哦~\n点击下方 + 开始记账吧！</text>
   </view>
 

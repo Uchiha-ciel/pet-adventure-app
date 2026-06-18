@@ -3,7 +3,7 @@
   <view class="scene-card card">
     <view class="pet-area" bindtap="onPetTap">
       <view class="pet-circle">
-        <text class="pet-sprite-text">{{pet.name.slice(0,1)}}</text>
+        <image class="pet-sprite-img" src="/assets/sprites/{{pet.id}}-{{petStage}}.png" mode="aspectFit" />
       </view>
       <view class="pet-mood-bubble">
         <text class="mood-emoji">{{moodEmoji}}</text>

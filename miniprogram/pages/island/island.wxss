@@ -19,9 +19,13 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 8rpx 30rpx rgba(255, 107, 138, 0.3);
+  overflow: hidden;
 }
 
-.pet-sprite-text { font-size: 72rpx; }
+.pet-sprite-img {
+  width: 160rpx;
+  height: 160rpx;
+}
 
 .pet-mood-bubble {
   position: absolute;

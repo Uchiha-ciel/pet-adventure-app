@@ -20,9 +20,11 @@
   width: 100rpx; height: 100rpx; border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), #FFB6C1);
   margin: 0 auto 12rpx; display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
 .pet-card.locked .pet-card-icon { background: #E0E0E0; }
-.pet-emoji { font-size: 44rpx; }
+.pet-card-img { width: 90rpx; height: 90rpx; }
+.pet-emoji { font-size: 36rpx; color: #999; }
 
 .pet-card-name { font-size: 24rpx; color: var(--text); display: block; }
 .pet-card-badge {
