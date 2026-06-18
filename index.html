@@ -95,8 +95,8 @@
 
   <div class="card menu-list">
     <div class="menu-item" onclick="openBudget()"><span>💰</span><span>预算设置</span><span>›</span></div>
-    <div class="menu-item" onclick="var d=JSON.parse(localStorage.getItem('bills')||'[]');var b=new Blob([JSON.stringify({bills:d,budget:JSON.parse(localStorage.getItem('budget')||'null'),user:JSON.parse(localStorage.getItem('user')||'null'),exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='pet-'+new Date().toISOString().slice(0,10)+'.json';a.click();localStorage.setItem('lastBackup',new Date().toISOString())"><span>📤</span><span>导出数据</span><span>›</span></div>
-    <div class="menu-item" onclick="var i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(d.bills)localStorage.setItem('bills',JSON.stringify(d.bills));if(d.budget)localStorage.setItem('budget',JSON.stringify(d.budget));if(d.user)localStorage.setItem('user',JSON.stringify(d.user));alert('导入成功！刷新页面生效');location.reload()}catch(err){alert('文件格式不正确')}};r.readAsText(f)};i.click()"><span>📥</span><span>导入数据</span><span>›</span></div>
+    <div class="menu-item" onclick="exportData()"><span>📤</span><span>导出数据</span><span>›</span></div>
+    <div class="menu-item" onclick="importData()"><span>📥</span><span>导入数据</span><span>›</span></div>
   </div>
 
   <div class="card">
@@ -193,6 +193,50 @@ function openBudget() {
     var v = (cbs[c.id]||0)>0 ? (cbs[c.id]/100).toFixed(0) : '';
     return '<div class="budget-cat-row"><span>'+c.name+'</span><input class="budget-cat-input" type="number" data-cat="'+c.id+'" placeholder="不限" value="'+v+'" step="10" min="0"></div>';
   }).join('');
+}
+
+function exportData() {
+  var data = {
+    bills: JSON.parse(localStorage.getItem('bills')||'[]'),
+    budget: JSON.parse(localStorage.getItem('budget')||'null'),
+    user: JSON.parse(localStorage.getItem('user')||'null'),
+    exportedAt: new Date().toISOString()
+  };
+  var json = JSON.stringify(data, null, 2);
+  var blob = new Blob([json], {type: 'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'pet-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  localStorage.setItem('lastBackup', new Date().toISOString());
+  alert('导出成功！文件已下载');
+}
+
+function importData() {
+  var inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = '.json';
+  inp.onchange = function(e) {
+    var f = e.target.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function() {
+      try {
+        var d = JSON.parse(r.result);
+        if (d.bills) localStorage.setItem('bills', JSON.stringify(d.bills));
+        if (d.budget) localStorage.setItem('budget', JSON.stringify(d.budget));
+        if (d.user) localStorage.setItem('user', JSON.stringify(d.user));
+        alert('导入成功！刷新页面生效');
+        location.reload();
+      } catch(err) { alert('文件格式不正确'); }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
 }
 </script>
 <script src="js/db.js"></script>
