@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#FF6B8A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="钱罐小精灵">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <title>钱罐小精灵</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ====== Pages ====== -->
+
+<!-- ISLAND -->
+<div id="page-island" class="page active">
+  <div class="card scene-card">
+    <div id="pet-circle" class="pet-circle" onclick="this.style.transform='scale(1.1)';setTimeout(()=>this.style.transform='',200)">
+      <span id="pet-mood" class="pet-mood-bubble"></span>
+    </div>
+    <div class="pet-status">
+      <span id="pet-name" class="pet-name"></span>
+      <span id="pet-stage" class="stage-badge"></span>
+    </div>
+  </div>
+
+  <div class="card today-card">
+    <h3>今日概览</h3>
+    <div class="today-row">
+      <div><small>支出</small><span class="orange f-large" id="today-expense">0</span></div>
+      <div><small>收入</small><span class="green f-large" id="today-income">0</span></div>
+      <div id="today-budget"><small>预算</small><span class="f-large" id="budget-pct-text"></span></div>
+    </div>
+    <div id="budget-ring" class="center">
+      <canvas id="budget-ring-canvas" width="120" height="120"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>本月冒险进度</h3>
+    <div class="progress-bar"><div id="adv-progress-bar" class="progress-fill"></div></div>
+    <small id="adv-progress-text"></small>
+  </div>
+
+  <div class="card" id="recent-bills"></div>
+</div>
+
+<!-- STATS -->
+<div id="page-stats" class="page">
+  <div class="period-tabs">
+    <span class="period-tab active" data-period="day">日</span>
+    <span class="period-tab" data-period="week">周</span>
+    <span class="period-tab" data-period="month">月</span>
+    <span class="period-tab" data-period="year">年</span>
+  </div>
+  <div class="card stat-overview">
+    <div><small>支出</small><span class="orange f-large" id="stat-expense">0</span></div>
+    <div><small>收入</small><span class="green f-large" id="stat-income">0</span></div>
+    <div><small>结余</small><span class="f-large" id="stat-balance">0</span></div>
+  </div>
+  <div id="stat-detail"></div>
+  <div class="card"><h3>支出分类排行</h3><div id="cat-breakdown"></div></div>
+</div>
+
+<!-- RECORDS -->
+<div id="page-records" class="page">
+  <div class="month-nav">
+    <button id="rec-prev" class="btn-sm">‹</button>
+    <span id="rec-month" class="f-large"></span>
+    <button id="rec-next" class="btn-sm">›</button>
+  </div>
+  <div id="rec-summary" class="rec-summary"></div>
+  <div id="rec-list"></div>
+</div>
+
+<!-- PROFILE -->
+<div id="page-profile" class="page">
+  <div class="card profile-hd">
+    <div class="avatar-circle">🐱</div>
+    <div><span class="f-large">我的小精灵</span><br><small>已记账 <span id="prof-days">0</span> 天 · 共 <span id="prof-records">0</span> 笔</small></div>
+  </div>
+
+  <div class="card menu-list">
+    <div class="menu-item" id="btn-budget-page"><span>💰</span><span>预算设置</span><span>›</span></div>
+    <div class="menu-item" id="btn-export"><span>📤</span><span>导出数据</span><span>›</span></div>
+    <div class="menu-item" id="btn-import"><span>📥</span><span>导入数据</span><span>›</span></div>
+  </div>
+
+  <div class="card">
+    <h3>成就徽章</h3>
+    <div id="achieve-grid" class="achieve-grid"></div>
+  </div>
+  <div class="footer">钱罐小精灵 PWA v1.0.0</div>
+</div>
+
+<!-- ====== Tab Bar ====== -->
+<nav class="tabbar">
+  <div class="tab-item active" data-tab="island"><span>🏝</span><span>小岛</span></div>
+  <div class="tab-item" data-tab="stats"><span>📊</span><span>统计</span></div>
+  <div class="tab-item" data-tab="records"><span>📋</span><span>记录</span></div>
+  <div class="tab-item" data-tab="profile"><span>👤</span><span>我的</span></div>
+</nav>
+
+<!-- FAB -->
+<button id="fab-add" class="fab">+</button>
+
+<!-- ====== Add Record Modal ====== -->
+<div id="modal-overlay" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span>记一笔</span>
+      <button id="modal-close" class="btn-close">✕</button>
+    </div>
+    <div class="type-toggle">
+      <select id="add-type" class="type-select">
+        <option value="expense">💰 支出</option>
+        <option value="income">💎 收入</option>
+      </select>
+    </div>
+    <div class="amount-area">
+      <span class="currency">¥</span>
+      <input id="add-amount" class="amount-input" type="text" inputmode="none" readonly placeholder="0">
+    </div>
+    <div id="cat-grid" class="cat-grid"></div>
+    <div id="subcat-list" class="subcat-list"></div>
+    <div class="form-row">
+      <input id="add-date" type="date">
+      <input id="add-time" type="time">
+    </div>
+    <input id="add-note" class="note-inp" type="text" placeholder="添加备注（选填）" maxlength="50">
+    <input type="hidden" id="add-cat-l1">
+    <input type="hidden" id="add-cat-l2">
+    <button id="add-submit" class="btn-submit">记一笔 ✨</button>
+
+    <!-- Number Pad -->
+    <div class="numpad">
+      <div class="numpad-row"><button class="numpad-key" data-key="1">1</button><button class="numpad-key" data-key="2">2</button><button class="numpad-key" data-key="3">3</button></div>
+      <div class="numpad-row"><button class="numpad-key" data-key="4">4</button><button class="numpad-key" data-key="5">5</button><button class="numpad-key" data-key="6">6</button></div>
+      <div class="numpad-row"><button class="numpad-key" data-key="7">7</button><button class="numpad-key" data-key="8">8</button><button class="numpad-key" data-key="9">9</button></div>
+      <div class="numpad-row"><button class="numpad-key" data-key=".">.</button><button class="numpad-key" data-key="0">0</button><button class="numpad-key" data-key="del">⌫</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Budget Modal ====== -->
+<div id="budget-modal" class="modal-overlay" style="display:none">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span>预算设置</span>
+      <button id="budget-close" class="btn-close">✕</button>
+    </div>
+    <label>预算周期</label>
+    <select id="budget-period" class="type-select">
+      <option value="monthly">月度</option>
+      <option value="weekly">周度</option>
+    </select>
+    <label>总预算 (元)</label>
+    <input id="budget-total" class="note-inp" type="number" placeholder="设置总预算" min="0" step="100">
+    <label>分类预算 (元，可选)</label>
+    <div id="budget-cats"></div>
+    <button id="budget-save" class="btn-submit">保存预算</button>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/pet.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/budget.js"></script>
+<script src="js/adventure.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
