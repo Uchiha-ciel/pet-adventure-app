@@ -215,3 +215,10 @@ input, select { font-family: inherit; font-size: 14px; outline: none; border: no
 .green { color: var(--income); }
 .ml-auto { margin-left: auto; }
 .empty-hint { text-align: center; padding: 32px; color: var(--text-secondary); }
+
+/* ===== Backup Hint ===== */
+.backup-hint {
+  text-align: center; padding: 12px 16px; font-size: 12px; color: var(--text-secondary);
+  margin: 8px 0;
+}
+.backup-hint.warn { background: #FFF3CD; color: #856404; border-radius: 10px; margin: 8px 12px; }

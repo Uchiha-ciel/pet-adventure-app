@@ -456,11 +456,61 @@
     return found ? found.name : id;
   }
 
+  // ── PWA Install Prompt ──
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const promptEl = document.getElementById('install-prompt');
+    if (promptEl) promptEl.style.display = '';
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('btn-install');
+    if (btn) btn.addEventListener('click', async () => {
+      if (!deferredPrompt) { alert('安装功能暂时不可用，请通过浏览器菜单「添加到主屏幕」'); return; }
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') { document.getElementById('install-prompt').style.display = 'none'; }
+      deferredPrompt = null;
+    });
+  });
+
+  // ── Backup tracking ──
+  function updateBackupStatus() {
+    const lastBackup = localStorage.getItem('lastBackup');
+    const el = document.getElementById('last-backup');
+    if (el) el.textContent = lastBackup || '从未';
+    // Remind if more than 7 days
+    const hint = document.getElementById('backup-hint');
+    if (hint) {
+      if (!lastBackup || Date.now() - new Date(lastBackup).getTime() > 7 * 86400000) {
+        hint.classList.add('warn');
+      } else { hint.classList.remove('warn'); }
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    updateBackupStatus();
+    const qe = document.getElementById('btn-quick-export');
+    if (qe) qe.addEventListener('click', () => {
+      const data = DB.exportAll();
+      localStorage.setItem('lastBackup', new Date().toISOString());
+      updateBackupStatus();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = `pet-${new Date().toISOString().slice(0, 10)}.json`; a.click();
+      URL.revokeObjectURL(url);
+    });
+  });
+
   // ── Start ──
   document.addEventListener('DOMContentLoaded', init);
 
   // Register Service Worker
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      console.log('SW registered:', reg.scope);
+    }).catch(err => {
+      console.warn('SW registration failed:', err);
+    });
   }
 })();
