@@ -10,17 +10,22 @@
 
   // ── Init ──
   async function init() {
-    // Load static data
-    const [cats, pets, themes] = await Promise.all([
-      fetch('data/categories.json').then(r => r.json()),
-      fetch('data/pets.json').then(r => r.json()),
-      fetch('data/themes.json').then(r => r.json()),
-    ]);
-    categoriesData = cats;
-    PetUtils.init(pets);
-    AdventureUtils.init(cats);
+    // Determine base path for GitHub Pages
+    const base = location.pathname.replace(/\/[^/]*$/, '') || '';
 
-    // Init user if needed
+    try {
+      const [cats, pets, themes] = await Promise.all([
+        fetch(base + '/data/categories.json').then(r => r.json()),
+        fetch(base + '/data/pets.json').then(r => r.json()),
+        fetch(base + '/data/themes.json').then(r => r.json()),
+      ]);
+      categoriesData = cats;
+      PetUtils.init(pets);
+      AdventureUtils.init(cats);
+    } catch (e) {
+      console.error('Failed to load data files:', e);
+    }
+
     if (!DB.getUser()) {
       DB.saveUser({ currentPet: 'fat-cat', currentTheme: 'candy-kingdom', unlockedPets: ['fat-cat'], unlockedThemes: ['candy-kingdom'], totalRecords: 0, consecutiveDays: 0 });
     }
@@ -409,18 +414,25 @@
 
   // ── Export/Import ──
   function setupExport() {
-    $('#btn-export').addEventListener('click', () => {
+    const btnExport = $('#btn-export');
+    const btnImport = $('#btn-import');
+    const btnBudget = $('#btn-budget-page');
+
+    if (btnExport) btnExport.addEventListener('click', () => {
       const data = DB.exportAll();
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href = url; a.download = `pet-adventure-backup-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
+      localStorage.setItem('lastBackup', new Date().toISOString());
+      updateBackupStatus();
     });
-    $('#btn-import').addEventListener('click', () => {
+    if (btnImport) btnImport.addEventListener('click', () => {
       const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json';
       inp.onchange = (e) => {
         const file = e.target.files[0];
+        if (!file) return;
         const reader = new FileReader();
         reader.onload = () => {
           try {
@@ -434,12 +446,15 @@
       };
       inp.click();
     });
-    $('#btn-budget-page').addEventListener('click', () => {
+    if (btnBudget) btnBudget.addEventListener('click', () => {
       const modal = document.getElementById('budget-modal');
+      if (!modal) return;
       modal.style.display = 'flex';
       const budget = DB.getBudget() || {};
-      $('#budget-period').value = budget.period || 'monthly';
-      $('#budget-total').value = budget.totalBudget > 0 ? (budget.totalBudget / 100).toFixed(0) : '';
+      const periodEl = document.getElementById('budget-period');
+      const totalEl = document.getElementById('budget-total');
+      if (periodEl) periodEl.value = budget.period || 'monthly';
+      if (totalEl) totalEl.value = budget.totalBudget > 0 ? (budget.totalBudget / 100).toFixed(0) : '';
       renderBudgetCats(budget.categoryBudgets || {});
     });
   }
