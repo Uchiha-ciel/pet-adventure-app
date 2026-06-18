@@ -1,0 +1,30 @@
+{
+  "basic": [
+    { "id": "fat-cat", "name": "胖猫", "description": "慵懒又贪吃的橘猫", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["orange", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "round-bear", "name": "圆熊", "description": "最爱蜂蜜的圆滚滚小熊", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["brown", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "soft-bunny", "name": "软兔", "description": "垂耳朵的软萌小兔", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["white", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "mochi", "name": "糯米团子", "description": "白白软软的小团子", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["white", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "dino", "name": "小恐龙", "description": "短手短脚的可爱小暴龙", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["green", "pink", "blue", "orange", "purple", "gold"] },
+    { "id": "fat-bird", "name": "肥啾", "description": "圆滚滚的小白鸟", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["white", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "seal", "name": "小海豹", "description": "圆头圆脑芝麻豹", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["grey", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "cream-fox", "name": "奶狐狸", "description": "毛茸茸奶油色大尾巴", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["cream", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "shiba", "name": "柴丸子", "description": "豆豆眉的圆滚滚小柴犬", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["orange", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "hamster", "name": "仓鼠球", "description": "腮帮子鼓鼓的小仓鼠", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["brown", "pink", "blue", "green", "purple", "gold"] },
+    { "id": "hippo", "name": "小河马", "description": "粉紫色的胖胖小河马", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["purple", "pink", "blue", "green", "orange", "gold"] },
+    { "id": "penguin", "name": "奶企鹅", "description": "摇摇摆摆的小企鹅", "unlockCondition": "initial", "stages": ["baby", "young", "adult"], "colors": ["blue", "pink", "white", "green", "purple", "gold"] }
+  ],
+  "rare": [
+    { "id": "narwhal", "name": "独角鲸", "description": "神秘的海洋独角精灵", "unlockCondition": { "type": "totalRecords", "value": 100 } },
+    { "id": "cotton-cloud", "name": "棉花糖云", "description": "飘在空中的软软云朵", "unlockCondition": { "type": "totalRecords", "value": 300 } },
+    { "id": "star-unicorn", "name": "星空独角兽", "description": "来自星空的神奇精灵", "unlockCondition": { "type": "totalRecords", "value": 500 } },
+    { "id": "jelly-dragon", "name": "软糖龙", "description": "QQ弹弹的果冻小飞龙", "unlockCondition": { "type": "totalRecords", "value": 1000 } },
+    { "id": "cream-phoenix", "name": "奶油凤凰", "description": "每天坚持记账才能遇到的神兽", "unlockCondition": { "type": "consecutiveDays", "value": 90 } },
+    { "id": "crystal-slime", "name": "水晶史莱姆", "description": "预算管理大师的奖励", "unlockCondition": { "type": "consecutiveBudgetMonths", "value": 3 } },
+    { "id": "rainbow-mochi", "name": "彩虹团子", "description": "记账一整年的纪念", "unlockCondition": { "type": "totalRecords", "value": 365, "extra": "记账满一年" } },
+    { "id": "gold-carrot-bunny", "name": "金萝卜兔", "description": "收入达标的奖励", "unlockCondition": { "type": "totalIncome", "value": 10000000 } },
+    { "id": "mooncake-cat", "name": "月饼猫", "description": "中秋节限定精灵", "unlockCondition": { "type": "festival", "value": "mid-autumn" } },
+    { "id": "tangyuan-mochi", "name": "汤圆团子", "description": "元宵节限定精灵", "unlockCondition": { "type": "festival", "value": "lantern" } },
+    { "id": "zongzi-dino", "name": "粽粽龙", "description": "端午节限定精灵", "unlockCondition": { "type": "festival", "value": "dragon-boat" } },
+    { "id": "snowflake-spirit", "name": "雪花精", "description": "圣诞节限定精灵", "unlockCondition": { "type": "festival", "value": "christmas" } }
+  ]
+}

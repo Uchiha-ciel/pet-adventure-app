@@ -1,0 +1,133 @@
+{
+  "expense": [
+    {
+      "id": "food",
+      "name": "餐饮",
+      "icon": "food",
+      "color": "#FF8C5A",
+      "adventureAction": "explore_food",
+      "children": [
+        { "id": "breakfast", "name": "早餐" },
+        { "id": "lunch", "name": "午餐" },
+        { "id": "dinner", "name": "晚餐" },
+        { "id": "snack", "name": "零食" },
+        { "id": "takeout", "name": "外卖" },
+        { "id": "fruit", "name": "水果" },
+        { "id": "drink", "name": "饮品奶茶" },
+        { "id": "party", "name": "聚餐" }
+      ]
+    },
+    {
+      "id": "transport", "name": "交通", "icon": "transport", "color": "#4ECDC4", "adventureAction": "travel",
+      "children": [
+        { "id": "bus", "name": "公交" }, { "id": "subway", "name": "地铁" }, { "id": "taxi", "name": "打车" },
+        { "id": "gas", "name": "加油" }, { "id": "parking", "name": "停车" }, { "id": "train", "name": "火车高铁" },
+        { "id": "flight", "name": "飞机" }, { "id": "bike", "name": "共享单车" }
+      ]
+    },
+    {
+      "id": "shopping", "name": "购物", "icon": "shopping", "color": "#FF6B8A", "adventureAction": "treasure_hunt",
+      "children": [
+        { "id": "clothes", "name": "服饰鞋包" }, { "id": "electronics", "name": "电子数码" },
+        { "id": "home", "name": "家居日用" }, { "id": "beauty", "name": "美妆护肤" },
+        { "id": "pet-supplies", "name": "宠物用品" }, { "id": "stationery", "name": "办公文具" }
+      ]
+    },
+    {
+      "id": "housing", "name": "居住", "icon": "housing", "color": "#A0A0A0", "adventureAction": "build_home",
+      "children": [
+        { "id": "rent", "name": "房租" }, { "id": "utilities", "name": "水电燃气" },
+        { "id": "property", "name": "物业费" }, { "id": "internet", "name": "网费话费" },
+        { "id": "repair", "name": "家居维修" }, { "id": "daily", "name": "日用品" }
+      ]
+    },
+    {
+      "id": "entertainment", "name": "娱乐", "icon": "entertainment", "color": "#FFE66D", "adventureAction": "have_fun",
+      "children": [
+        { "id": "movie", "name": "电影" }, { "id": "game", "name": "游戏" },
+        { "id": "vip", "name": "视频会员" }, { "id": "ktv", "name": "KTV" },
+        { "id": "travel", "name": "旅游出行" }, { "id": "fitness", "name": "运动健身" }
+      ]
+    },
+    {
+      "id": "medical", "name": "医疗", "icon": "medical", "color": "#FF4757", "adventureAction": "heal",
+      "children": [
+        { "id": "clinic", "name": "门诊" }, { "id": "medicine", "name": "买药" },
+        { "id": "checkup", "name": "体检" }, { "id": "dental", "name": "牙科" },
+        { "id": "hospital", "name": "住院" }
+      ]
+    },
+    {
+      "id": "education", "name": "教育", "icon": "education", "color": "#B8A9C9", "adventureAction": "learn",
+      "children": [
+        { "id": "online-course", "name": "线上课程" }, { "id": "offline-course", "name": "线下培训" },
+        { "id": "books", "name": "书籍资料" }, { "id": "exam", "name": "考试报名" }
+      ]
+    },
+    {
+      "id": "social", "name": "人情", "icon": "social", "color": "#FFB347", "adventureAction": "gift",
+      "children": [
+        { "id": "gift", "name": "送礼" }, { "id": "red-packet", "name": "红包" },
+        { "id": "treat", "name": "请客" }, { "id": "wedding", "name": "婚礼份子" },
+        { "id": "parents", "name": "孝敬父母" }
+      ]
+    },
+    {
+      "id": "pet", "name": "宠物", "icon": "pet", "color": "#87CEEB", "adventureAction": "care_pet",
+      "children": [
+        { "id": "pet-food", "name": "主粮" }, { "id": "pet-snack", "name": "零食" },
+        { "id": "pet-toy", "name": "玩具" }, { "id": "pet-medical", "name": "医疗" },
+        { "id": "pet-grooming", "name": "洗护美容" }
+      ]
+    },
+    {
+      "id": "other", "name": "其他", "icon": "other", "color": "#D3D3D3", "adventureAction": "misc",
+      "children": [
+        { "id": "shipping", "name": "快递运费" }, { "id": "fix", "name": "维修" },
+        { "id": "fine", "name": "罚款" }, { "id": "misc", "name": "其他杂项" }
+      ]
+    }
+  ],
+  "income": [
+    {
+      "id": "salary", "name": "工资", "icon": "salary", "color": "#4ECDC4", "adventureAction": "gold_mine",
+      "children": [
+        { "id": "monthly", "name": "月薪" }, { "id": "bonus", "name": "奖金" },
+        { "id": "allowance", "name": "津贴补贴" }, { "id": "year-end", "name": "年终奖" }
+      ]
+    },
+    {
+      "id": "side-job", "name": "兼职", "icon": "side-job", "color": "#87CEEB", "adventureAction": "side_quest",
+      "children": [
+        { "id": "freelance", "name": "副业外快" }, { "id": "writing", "name": "稿费版税" },
+        { "id": "design", "name": "设计接单" }, { "id": "consulting", "name": "顾问咨询" }
+      ]
+    },
+    {
+      "id": "investment", "name": "理财", "icon": "investment", "color": "#FFE66D", "adventureAction": "golden_tree",
+      "children": [
+        { "id": "interest", "name": "利息" }, { "id": "fund", "name": "基金收益" },
+        { "id": "stock", "name": "股票收益" }, { "id": "invest-red-packet", "name": "红包收入" }
+      ]
+    },
+    {
+      "id": "refund", "name": "退款", "icon": "refund", "color": "#A0A0A0", "adventureAction": "recover",
+      "children": [
+        { "id": "return", "name": "退货退款" }, { "id": "reimburse", "name": "报销" }
+      ]
+    },
+    {
+      "id": "gift-money", "name": "礼金", "icon": "gift-money", "color": "#FF6B8A", "adventureAction": "lucky_day",
+      "children": [
+        { "id": "birthday-gift", "name": "生日礼金" }, { "id": "festival-gift", "name": "节日红包" },
+        { "id": "wedding-gift", "name": "婚礼礼金" }
+      ]
+    },
+    {
+      "id": "income-other", "name": "其他", "icon": "income-other", "color": "#D3D3D3", "adventureAction": "misc_income",
+      "children": [
+        { "id": "sell", "name": "闲置出售" }, { "id": "income-misc", "name": "其他收入" }
+      ]
+    }
+  ]
+}
