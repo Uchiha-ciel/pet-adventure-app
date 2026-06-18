@@ -1,7 +1,6 @@
 // sw.js — Service Worker (offline-first)
 const CACHE = 'pet-adventure-v1';
 const ASSETS = [
-  '/',
   'index.html',
   'css/style.css',
   'js/db.js',
