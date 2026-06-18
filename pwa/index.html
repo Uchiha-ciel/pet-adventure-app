@@ -94,9 +94,9 @@
   </div>
 
   <div class="card menu-list">
-    <div class="menu-item" id="btn-budget-page"><span>💰</span><span>预算设置</span><span>›</span></div>
-    <div class="menu-item" id="btn-export"><span>📤</span><span>导出数据</span><span>›</span></div>
-    <div class="menu-item" id="btn-import"><span>📥</span><span>导入数据</span><span>›</span></div>
+    <div class="menu-item" onclick="openBudget()"><span>💰</span><span>预算设置</span><span>›</span></div>
+    <div class="menu-item" onclick="var d=JSON.parse(localStorage.getItem('bills')||'[]');var b=new Blob([JSON.stringify({bills:d,budget:JSON.parse(localStorage.getItem('budget')||'null'),user:JSON.parse(localStorage.getItem('user')||'null'),exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='pet-'+new Date().toISOString().slice(0,10)+'.json';a.click();localStorage.setItem('lastBackup',new Date().toISOString())"><span>📤</span><span>导出数据</span><span>›</span></div>
+    <div class="menu-item" onclick="var i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(d.bills)localStorage.setItem('bills',JSON.stringify(d.bills));if(d.budget)localStorage.setItem('budget',JSON.stringify(d.budget));if(d.user)localStorage.setItem('user',JSON.stringify(d.user));alert('导入成功！刷新页面生效');location.reload()}catch(err){alert('文件格式不正确')}};r.readAsText(f)};i.click()"><span>📥</span><span>导入数据</span><span>›</span></div>
   </div>
 
   <div class="card">
@@ -160,7 +160,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span>预算设置</span>
-      <button id="budget-close" class="btn-close">✕</button>
+      <button id="budget-close" class="btn-close" onclick="document.getElementById('budget-modal').style.display='none'">✕</button>
     </div>
     <label>预算周期</label>
     <select id="budget-period" class="type-select">
@@ -171,10 +171,30 @@
     <input id="budget-total" class="note-inp" type="number" placeholder="设置总预算" min="0" step="100">
     <label>分类预算 (元，可选)</label>
     <div id="budget-cats"></div>
-    <button id="budget-save" class="btn-submit">保存预算</button>
+    <button id="budget-save" class="btn-submit" onclick="var cb={};document.querySelectorAll('.budget-cat-input').forEach(function(i){var v=parseFloat(i.value);if(v>0)cb[i.dataset.cat]=Math.round(v*100)});localStorage.setItem('budget',JSON.stringify({period:document.getElementById('budget-period').value,totalBudget:Math.round(parseFloat(document.getElementById('budget-total').value||'0')*100),categoryBudgets:cb}));alert('预算已保存！');document.getElementById('budget-modal').style.display='none';location.reload()">保存预算</button>
   </div>
 </div>
 
+<script>
+// Global inline handlers
+var CATEGORIES = [];
+fetch('data/categories.json').then(r=>r.json()).then(function(c){CATEGORIES=c.expense||[]}).catch(function(){});
+
+function openBudget() {
+  var m = document.getElementById('budget-modal');
+  if (!m) return;
+  m.style.display = 'flex';
+  var b = JSON.parse(localStorage.getItem('budget')||'null')||{};
+  document.getElementById('budget-period').value = b.period||'monthly';
+  document.getElementById('budget-total').value = b.totalBudget>0 ? (b.totalBudget/100).toFixed(0) : '';
+  var div = document.getElementById('budget-cats');
+  var cbs = b.categoryBudgets||{};
+  div.innerHTML = CATEGORIES.map(function(c){
+    var v = (cbs[c.id]||0)>0 ? (cbs[c.id]/100).toFixed(0) : '';
+    return '<div class="budget-cat-row"><span>'+c.name+'</span><input class="budget-cat-input" type="number" data-cat="'+c.id+'" placeholder="不限" value="'+v+'" step="10" min="0"></div>';
+  }).join('');
+}
+</script>
 <script src="js/db.js"></script>
 <script src="js/pet.js"></script>
 <script src="js/stats.js"></script>
