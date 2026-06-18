@@ -1,15 +1,16 @@
 {
   "name": "钱罐小精灵",
   "short_name": "钱罐小精灵",
-  "description": "宠物冒险记账 - Q版卡通风格记账应用",
+  "description": "宠物冒险记账应用",
   "start_url": "/pet-adventure-app/",
   "scope": "/pet-adventure-app/",
   "display": "standalone",
+  "lang": "zh-CN",
   "orientation": "portrait",
   "background_color": "#FFF8F0",
   "theme_color": "#FF6B8A",
   "icons": [
-    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }
